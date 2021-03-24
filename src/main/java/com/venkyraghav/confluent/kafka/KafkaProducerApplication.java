@@ -165,7 +165,7 @@ public class KafkaProducerApplication {
 		writer.write("# General Config" + System.lineSeparator());
 		writer.write("## " + System.lineSeparator());
 		writer.write("# " + ProducerConfig.BOOTSTRAP_SERVERS_CONFIG + "=localhost:9092" + System.lineSeparator());
-		writer.write("# " + "schema.registry.url" + "=localhost:8081" + System.lineSeparator());
+		writer.write("# " + "schema.registry.url" + "=http://localhost:8081" + System.lineSeparator());
 		writer.write("# " + ProducerConfig.CLIENT_ID_CONFIG + "=TestClient" + System.lineSeparator());
 		writer.write("# " + ProducerConfig.INTERCEPTOR_CLASSES_CONFIG + "=" + System.lineSeparator());
 		writer.write("# " + ProducerConfig.METRIC_REPORTER_CLASSES_CONFIG + "=" + System.lineSeparator());
