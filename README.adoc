@@ -1,0 +1,26 @@
+# Read Me First
+
+## Overview
+Generates test messages to kafka topic with delays
+
+## To Run
+java -jar build/libs/kafka-producer-0.0.1.jar [OPTIONS]
+
+## Options
+usage: KafkaProducer
+
+|===
+|**Short**|**Long**|**Comment**
+|-b|--bootstrap.servers <arg>|Bootstrap Server. Overrides setting in
+Client Config file
+|-c|--client.config <arg>|Client Configuration File
+|-d|--delay <arg>|Delay between messages. Default 2s
+|-g|--generate|Generate Client Config template with defaults
+|-h|--help|Shows this help
+|-i|--increment <arg>|Increment Sequence. Default 1
+|-m|--message <arg>|Test Message. Default Message is
+|-n|--num-mesg <arg>|# of messages. Default 10
+|-s|--start-seq <arg>|Start Sequence Number. Default 0
+|-t|--topic <arg>|Topic Name
+|-u|--user|Use User Data for message
+|===
