@@ -35,9 +35,9 @@ public class KafkaProducerApplication {
 		kafkaProducerApplication.run(properties);
 	}
 
-	private KafkaProducer<Integer, Object> createProducer(Properties properties) {
+	private KafkaProducer<String, Object> createProducer(Properties properties) {
 		if (properties.containsKey(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG) == false) {
-			properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, IntegerSerializer.class);
+			properties.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
 		}
 		if (properties.containsKey(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG) == false) {
 			properties.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
@@ -45,11 +45,11 @@ public class KafkaProducerApplication {
 
 		// properties.put(ProducerConfig.TRANSACTIONAL_ID_CONFIG, CHANGE_TRANSACTION_ID);
 
-		return new KafkaProducer<Integer, Object>(properties);
+		return new KafkaProducer<String, Object>(properties);
 	}
 
 	public void run(Properties properties) {
-		KafkaProducer<Integer, Object> producer = createProducer(properties);
+		KafkaProducer<String, Object> producer = createProducer(properties);
 		String topic = properties.get(KafkaProducerApplication.TOPIC).toString();
 		String message = properties.get(KafkaProducerApplication.MESSAGE).toString();
 		int numMessages = Integer.parseInt(properties.get(KafkaProducerApplication.NUMMSG).toString());
@@ -58,8 +58,8 @@ public class KafkaProducerApplication {
 		int increment = Integer.parseInt(properties.get(KafkaProducerApplication.INCREMENT).toString());
 
 		for (int i = startSequence;i < startSequence+numMessages;) {
-			ProducerRecord<Integer, Object> record =
-					new ProducerRecord<Integer, Object> (topic, Integer.valueOf(i), message + " " + i);
+			ProducerRecord<String, Object> record =
+					new ProducerRecord<String, Object> (topic, String.valueOf(i), message + " " + i);
 			producer.send(record, (metadata, exception) -> {
 				if (exception != null) {
 					exception.printStackTrace();
