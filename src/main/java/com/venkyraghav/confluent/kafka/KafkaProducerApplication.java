@@ -59,7 +59,7 @@ public class KafkaProducerApplication {
 
 		for (int i = startSequence;i < startSequence+numMessages;) {
 			ProducerRecord<Integer, Object> record =
-					new ProducerRecord<Integer, Object> (topic, Integer.valueOf(i), message + " is " + i);
+					new ProducerRecord<Integer, Object> (topic, Integer.valueOf(i), message + " " + i);
 			producer.send(record, (metadata, exception) -> {
 				if (exception != null) {
 					exception.printStackTrace();
@@ -110,7 +110,7 @@ public class KafkaProducerApplication {
 				System.exit(1);
 			}
 
-			Optional<String> bootstrapServer = parseCommandLine.getStringArg("KafkaProducer", cmd, options, "b", ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "localhost:9091");
+			Optional<String> bootstrapServer = parseCommandLine.getStringArg("KafkaProducer", cmd, options, "b", ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, "");
 			Optional<String> clientConfig = parseCommandLine.getStringArg("KafkaProducer", cmd, options, "c", KafkaProducerApplication.CLIENTCFG, "");
 			Optional<String> message = parseCommandLine.getStringArg("KafkaProducer", cmd, options, "m", KafkaProducerApplication.MESSAGE, "Message is");
 			OptionalInt delay = parseCommandLine.getIntArg("KafkaProducer", cmd, options, "d", KafkaProducerApplication.DELAY, 2000);
